@@ -4,22 +4,13 @@
   "description": "Various Roam Javascript extensions deployed to roamjs.com",
   "main": "index.js",
   "scripts": {
-    "automate": "node scripts/automation.js",
     "build": "webpack --config ./webpack.production.config.js",
-    "build:api": "webpack --config ./webpack.lambda.config.js --env.dir=api",
-    "build:automations": "webpack --config ./webpack.lambda.config.js --env.dir=automations",
     "build:next": "next build",
     "postbuild:next": "next export",
-    "prebuild:pr": "echo 'Building extensions: Process will take a couple of minutes...'",
-    "build:pr": "webpack --config ./webpack.development.config.js",
-    "presetup:local": "npm run build:pr",
-    "setup:local": "node scripts/prelocal.js",
+    "build:dev": "webpack --config ./webpack.development.config.js",
     "start": "next dev",
-    "prelocal": "npm run setup:local",
     "local": "http-server ./",
     "test": "jest --passWithNoTests",
-    "extension": "node scripts/extension.js",
-    "digest": "node scripts/digest.js",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "repository": {

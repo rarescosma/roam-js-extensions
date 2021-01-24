@@ -5,7 +5,6 @@ import {
   addStyle,
   getPageUidByPageTitle,
   getTextTreeByBlockUid,
-  track,
 } from "../entry-helpers";
 import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 import { LatLngExpression, Icon } from "leaflet";
@@ -147,10 +146,6 @@ export const render = (b: HTMLButtonElement): void => {
       ).then((markers) => markers.filter(({ x, y }) => !isNaN(x) && !isNaN(y)))
     : Promise.resolve([]);
   getMarkers.then((markers) => {
-    track("Use Extension", {
-      extensionId: "maps",
-      action: "Render",
-    });
     ReactDOM.render(
       <Maps
         blockId={blockId}

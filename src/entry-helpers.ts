@@ -5,7 +5,6 @@ import {
   newBlockEnter,
 } from "roam-client";
 import { isIOS, isMacOs } from "mobile-device-detect";
-import mixpanel, { Dict } from "mixpanel-browser";
 
 declare global {
   interface Window {
@@ -33,10 +32,8 @@ declare global {
 }
 
 const roamJsVersion = process.env.ROAMJS_VERSION || "0";
-mixpanel.init(process.env.MIXPANEL_TOKEN);
 
-export const track = (name: string, properties?: Dict): void =>
-  process.env.MIXPANEL_TOKEN && mixpanel.track(name, properties);
+export const track = (name: string, properties?: any): void => {};
 
 export const runExtension = async (
   extensionId: string,
@@ -59,13 +56,7 @@ export const runExtension = async (
     window.alert(
       'Hey! Thanks for using extensions from roam.davidvargas.me! I\'m currently migrating the extensions to roamjs.com. Please edit the src in your roam/js block, replacing "roam.davidvargas.me/master" with "roamjs.com"'
     );
-    track("Legacy Alerted");
   }
-
-  track("Load Extension", {
-    extensionId,
-    roamJsVersion,
-  });
   run();
 };
 
